@@ -46,5 +46,5 @@ class BaseModel (object):
 	def makePrediction(self, data):
 		pass
 
-	
+
 

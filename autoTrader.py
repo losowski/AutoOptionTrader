@@ -11,20 +11,22 @@ import signal
 # Import the protocol buffer libraries
 sys.path.append('python/proto')
 
-# Game Server Session
-from python.service import service
+# Auto Trader Main Class
+from python.trader import autoTrader
 
-#Messages
+#Messages (using Game as the Trading API)
 from python.proto import game_pb2
 
 
+OPTIONS_API_PORT = 10001
+
 def main():
-	blurb = "Options Trading Game Server"
+	blurb = "AutoTrader"
 	print (blurb)
 	#Build a datetime object with Current time
 	dt = datetime.datetime.now()
 	#Make the logging file
-	loggingfile = "/tmp/options_trading_game_{timestamp}.log".format(timestamp = dt.now().isoformat())
+	loggingfile = "/tmp/autoTrader_{timestamp}.log".format(timestamp = dt.now().isoformat())
 	#Setup logging
 	logging.basicConfig(format='%(asctime)s\t%(name)-16s\t%(funcName)-16s\t[%(levelname)-8s] %(message)s', level=logging.DEBUG)
 	#Let everyone know where we logged tp
@@ -37,17 +39,17 @@ def main():
 	# Generate the parsed arguments
 	args = parser.parse_args()
 	logger.info("Args: %s", args)
-	# Server
-	s = service.Service(10001)
-	s.initialise()
-	s.start()
+	# Trader
+	t = autoTrader.AutoTrader(OPTIONS_API_PORT)
+	t.initialise()
+	t.start()
 	#Clean up everything else...
 	#Signal handler needed here to wait before exiting
 	sigset = [signal.SIGINT, signal.SIGTERM]
 	signal.sigwait(sigset) #3.3 only
 	signal.pause()
 	#Finally shutdown the server
-	ps.shutdown()
+	t.shutdown()
 	logging.shutdown()
 	print("Exiting...")
 

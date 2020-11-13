@@ -26,7 +26,19 @@ class Actions (object):
 		#Return the calculated differences
 		return self.deltaObservations
 
+	# generateAction
+	# Action must be:
+	#	Inferred from the deltaObservations
+	# If there is no clear observation winner (2x next highest)
+	#	We select a weighted random action from the highest proposed actions
+	def generateAction(self):
+		pass
+
 	# Generate the action
-	def getAction(self, observations, reward)
+	def getAction(self, observations, reward):
 		deltaObs = self.getDeltaObservations(observations)
 		# TODO: pass deltaObs and reward into a model to calculate the appropriate action
+		# Get *AN* action
+		#action = self.generateAction()
+		#return action
+	

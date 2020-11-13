@@ -10,6 +10,7 @@ import logging
 
 class Actions (object):
 	def __init__(self):
+		self.logger         =   logging.getLogger('Actions')
 		self.observations		=	None
 		self.deltaObservations	=	None
 

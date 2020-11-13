@@ -11,6 +11,7 @@ from python.model import base
 class Rulebook (base.BaseModel):
 	def __init__(self, xsize, ysize):
 		super(Rulebook, self).__init__(xsize, ysize)
+		self.logger         =   logging.getLogger('Rulebook')
 
 
 	def __del__(self):

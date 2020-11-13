@@ -5,6 +5,7 @@ import logging
 
 class ReinforcementLearning (object):
 	def __init__(self):
+		self.logger         =   logging.getLogger('ReinforcementLearning')
 		pass
 
 	def __del__(self):

@@ -11,6 +11,7 @@ import logging
 
 class BaseModel (object):
 	def __init__(self, xsize, ysize):
+		self.logger         =   logging.getLogger('BaseModel')
 		self.xsize		=	xsize
 		self.ysize		=	ysize
 		# Model Object

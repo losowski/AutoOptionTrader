@@ -9,6 +9,7 @@ import logging
 
 class AutoTrader (object):
 	def __init__(self):
+		self.logger         =   logging.getLogger('AutoTrader')
 		pass
 
 

@@ -47,7 +47,7 @@ def main():
 	#Signal handler needed here to wait before exiting
 	sigset = [signal.SIGINT, signal.SIGTERM]
 	signal.sigwait(sigset) #3.3 only
-	signal.pause()
+	logger.error("Shutting down.....")
 	#Finally shutdown the server
 	t.shutdown()
 	logging.shutdown()

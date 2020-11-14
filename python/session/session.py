@@ -64,7 +64,8 @@ class Session (client.Client):
 		while (self.live):
 			self.logger.debug("Running the trading game")
 			# Check the response
-			if (self.gameResponse.status != game_pb2.gameStatus.OK):
-				self.logger.info("Response Bad")
-				# Kill the session
-				self.live = False
+			if (self.gameResponse is not None):
+				if (self.gameResponse.status != game_pb2.gameStatus.OK):
+					self.logger.info("Response Bad")
+					# Kill the session
+					self.live = False

@@ -7,12 +7,17 @@
 
 import logging
 
+from python.session import session
+
 class AutoTrader (object):
+
+	SESSIONS = 1
+
 	def __init__(self, tradeAddr, tradePort):
 		self.logger         =   logging.getLogger('AutoTrader')
 		self.tradeAddr		=	tradeAddr
 		self.tradePort		=	tradePort
-		pass
+		self.sessions		=	list()
 
 
 	def __del__(self):
@@ -20,13 +25,21 @@ class AutoTrader (object):
 
 
 	# Initialise
+	# Setup the sessions
+	# Assign a thread to each
 	def initialise(self):
-		pass
+		for i in range(self.SESSIONS):
+			s = session.Session(self.tradeAddr, self.tradePort)
+			s.initialise()
+			self.sessions.append(s)			
+
 
 
 	# Start the "service"
 	def start(self):
-		pass
+		for s in self.sessions():
+			
+
 
 
 	# Shutdown the "service"

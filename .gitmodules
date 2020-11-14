@@ -1,0 +1,3 @@
+[submodule "python/comms"]
+	path = python/comms
+	url = git@github.com:losowski/lzerocomms.git

@@ -37,13 +37,13 @@ class AutoTrader (object):
 
 	# Start the "service"
 	def start(self):
-		for s in self.sessions():
+		for s in self.sessions:
 			s.start()
 
 
 	# Shutdown the "service"
 	def shutdown(self):
-		for s in self.sessions():
+		for s in self.sessions:
 			s.shutdown()
 
 

@@ -46,26 +46,48 @@ class Session (client.Client):
 
 	# Reset Game data except for metadata
 	def resetRequest(self):
-		if (self.gameResponse is not None):
-			if (self.gameResponse.HasField('meta')):
-				# Store the response meta data
-				self.gameMeta.CopyFrom(self.gameResponse.meta)
 		# Reset the main request
 		self.gameRequest	=	game_pb2.gameRequest()
 		# Restore the metaData
 		self.gameRequest.meta.CopyFrom(self.gameMeta)
 
 
+	# Send the request to the game Server
+	#	Also process the response into a protocol buffer message
+	#	Handle the metadata too
+	def sendGameRequest(self):
+		msg = self.gameRequest.SerializeToString()
+		self.send(msg)
+		# Get the response too
+		data = self.receive()
+		self.gameResponse = game_pb2.gameResponse.FromString(data)
+		# Get the metadata stored safely for the reset
+		if (self.gameResponse.HasField('meta')):
+			# Store the response meta data
+			self.gameMeta.CopyFrom(self.gameResponse.meta)
+		# Ensure the response is OK
+		if (self.gameResponse.status != game_pb2.gameStatus.OK):
+			self.logger.info("Response Bad - Killing Session")
+			# Kill the session
+			self.live = False
+		# live will only be true if we are OK.
+		# If not we can save time on this iteration
+		return self.live
+
+
 	# Session Running
 	def run(self):
 		self.logger.info("Thread running")
-		# 1) Send the metadata to choose the game to play
-		# 2) Get response and store the metadata we are playing on
+		# Send the metadata to choose the game to play
+		self.resetRequest()
+		# Get response and store the metadata we are playing on
+		OK = self.sendGameRequest()
+		# Now process the loop of actions
 		while (self.live):
 			self.logger.debug("Running the trading game")
 			# Check the response
-			if (self.gameResponse is not None):
-				if (self.gameResponse.status != game_pb2.gameStatus.OK):
-					self.logger.info("Response Bad")
-					# Kill the session
-					self.live = False
+			#if (OK = True):
+			#	self.sendGameRequest()
+			#	Internalise Observations
+			#	Internalise state
+			#	Decide Actions

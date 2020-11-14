@@ -1,0 +1,89 @@
+/*
+	Google Protocol Buffers
+	Game Request/Response
+*/
+syntax = "proto2";
+
+// GameMetaData
+message gameMeta	{
+	optional	int32				session		=	1;
+	optional	string				symbol		=	2;
+	optional	string				timestamp	=	3;
+	optional	int32				step		=	4;
+}
+
+// Options
+message	gameOptions	{
+	optional	uint32				price		=	1;
+	required	string				call_put	=	2;
+	required	uint32				strike		=	3;
+
+}
+
+// GameActions
+message gameAction	{
+	required	int32				investment	=	1;	// Negative to sell (whole contracts only)
+	optional	gameOptions			options		=	2;
+}
+
+
+// GameRequest
+message gameRequest {
+	required	gameMeta			meta		=	1;
+	repeated	gameAction			action		=	2;
+}
+
+
+// Stock state
+message gameStockState {
+	// Stock ticker
+	required	float				high		=	1;
+	required	float				low			=	2;
+	required	float				open		=	3;
+	required	float				close		=	4;
+	required	float				adj_close	=	5;
+	required	float				volume		=	6;
+}
+
+// Prediction
+message gamePredictionState {
+	required	int32				prediction	=	1;
+	optional	float				target		=	2;
+}
+
+// Player state
+message gamePlayerState {
+	// Current balance
+	required	int32				balance		=	1;
+}
+
+
+// Game state
+message gameState	{
+	// Stock ticker
+	repeated	gameStockState		game		=	1;
+	// Prediction
+	repeated	gamePredictionState	prediction	=	2;
+	// Current balance
+	optional	gamePlayerState		player		=	3;
+	// Available options
+	repeated	gameOptions			options		=	4;
+	// Existing trades
+	repeated	gameAction			trades		=	5;
+}
+
+// Response Status
+enum gameStatus {
+	OK			=	0;
+	NOT_FOUND	=	1;
+	NO_SYMBOL	=	2;
+}
+
+
+// GameResponse
+message gameResponse {
+	required	gameStatus			status		=	1 [ default =  NOT_FOUND ];
+	optional	gameMeta			meta		=	2;
+	optional	gameState			state		=	3;
+}
+

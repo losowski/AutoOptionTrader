@@ -8,8 +8,10 @@
 import logging
 
 class AutoTrader (object):
-	def __init__(self):
+	def __init__(self, tradeAddr, tradePort):
 		self.logger         =   logging.getLogger('AutoTrader')
+		self.tradeAddr		=	tradeAddr
+		self.tradePort		=	tradePort
 		pass
 
 

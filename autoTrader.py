@@ -17,7 +17,7 @@ from python.trader import autoTrader
 #Messages (using Game as the Trading API)
 from python.proto import game_pb2
 
-
+OPTIONS_API_ADDR = "localhost"
 OPTIONS_API_PORT = 10001
 
 def main():
@@ -40,7 +40,7 @@ def main():
 	args = parser.parse_args()
 	logger.info("Args: %s", args)
 	# Trader
-	t = autoTrader.AutoTrader(OPTIONS_API_PORT)
+	t = autoTrader.AutoTrader(OPTIONS_API_ADDR, OPTIONS_API_PORT)
 	t.initialise()
 	t.start()
 	#Clean up everything else...

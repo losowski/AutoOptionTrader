@@ -11,6 +11,8 @@ pip install --user tf-agents
 A reinforcement learning model to best optimise option trading strategies.
 
 # Code structure
-Trader			- The service
-	Session		- A particular instance of the game
+Trader						- The service
+	Session					- A particular instance of the game
+		Action				- Class for deciding on an action to follow
+			Observation		- Observation data that constitutes the basis for the action
 

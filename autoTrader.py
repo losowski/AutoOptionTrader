@@ -14,7 +14,8 @@ sys.path.append('python/proto')
 # Auto Trader Main Class
 from python.trader import autoTrader
 
-#Messages (using Game as the Trading API)
+# Messages (using Game as the Trading API)
+#	This is mostly to ensure the import works properly
 from python.proto import game_pb2
 
 OPTIONS_API_ADDR = "localhost"

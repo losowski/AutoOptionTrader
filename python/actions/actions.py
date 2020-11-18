@@ -7,25 +7,17 @@
 
 import logging
 
+# Observation handler
+from python.observations import observations
 
 class Actions (object):
 	def __init__(self):
 		self.logger         =   logging.getLogger('Actions')
-		self.observations		=	None
-		self.deltaObservations	=	None
-
+		self.observations		=	observations.Observations()
 
 	def __del__(self):
 		pass
 
-
-	# Get the change in observation
-	def getDeltaObservations(self, observations):
-		# - used for iterative differences in values across the board
-		#	NOTE: might need proper implementation
-		self.deltaObservations = observations - self.observations
-		#Return the calculated differences
-		return self.deltaObservations
 
 	# generateAction
 	# Action must be:

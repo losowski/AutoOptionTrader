@@ -8,12 +8,12 @@
 import logging
 
 # Observation handler
-from python.observations import observations
+from python.observation import observation
 
 class Actions (object):
 	def __init__(self):
 		self.logger         =   logging.getLogger('Actions')
-		self.observations		=	observations.Observations()
+		self.observations		=	observation.Observation()
 
 	def __del__(self):
 		pass

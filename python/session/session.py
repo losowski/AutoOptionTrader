@@ -4,6 +4,7 @@ import logging
 import threading
 
 from python.comms import client
+from python.actions import actions
 
 from python.proto import game_pb2
 
@@ -17,6 +18,8 @@ class Session (client.Client):
 		self.gameMeta		=	game_pb2.gameMeta()
 		self.gameResponse	=	None
 		self.gameRequest	=	game_pb2.gameRequest()
+		# Actions
+		self.actions		=	actions.Actions()
 
 	def __del__(self):
 		super(Session, self).__del__()

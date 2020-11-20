@@ -7,13 +7,9 @@
 
 import logging
 
-# Observation handler
-from python.observation import observation
-
 class Actions (object):
 	def __init__(self):
 		self.logger         =   logging.getLogger('Actions')
-		self.observations		=	observation.Observation()
 
 	def __del__(self):
 		pass
@@ -28,10 +24,9 @@ class Actions (object):
 		pass
 
 	# Generate the action
-	def getAction(self, observations, reward):
-		deltaObs = self.getDeltaObservations(observations)
+	def getAction(self, observationDiff, reward):
 		# TODO: pass deltaObs and reward into a model to calculate the appropriate action
 		# Get *AN* action
 		#action = self.generateAction()
 		#return action
-	
+		pass

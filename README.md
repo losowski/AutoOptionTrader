@@ -14,5 +14,6 @@ A reinforcement learning model to best optimise option trading strategies.
 Trader						- The service
 	Session					- A particular instance of the game
 		Action				- Class for deciding on an action to follow
-			Observation		- Observation data that constitutes the basis for the action
+		Observation			- Observation data that constitutes the basis for the action
+
 

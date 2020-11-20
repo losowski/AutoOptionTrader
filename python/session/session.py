@@ -4,7 +4,10 @@ import logging
 import threading
 
 from python.comms import client
+# Actions Handler
 from python.actions import actions
+# Observation handler
+from python.observation import observation
 
 from python.proto import game_pb2
 

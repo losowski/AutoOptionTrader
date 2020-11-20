@@ -5,9 +5,13 @@ import threading
 
 from python.comms import client
 # Actions Handler
+#TODO: Use the derived class (that outputs this info)
 from python.actions import actions
+
 # Observation handler
+#TODO: Use the derived class (that interprets this info)
 from python.observation import observation
+
 
 from python.proto import game_pb2
 

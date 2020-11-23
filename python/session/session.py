@@ -27,6 +27,8 @@ class Session (client.Client):
 		self.gameRequest	=	game_pb2.gameRequest()
 		# Actions
 		self.actions		=	actions.Actions()
+		# Observations
+		self.observations	=	observation.Observation()
 
 	def __del__(self):
 		super(Session, self).__del__()
@@ -81,8 +83,12 @@ class Session (client.Client):
 			# Kill the session
 			self.live = False
 		# live will only be true if we are OK.
-		# If not we can save time on this iteration
-		return self.live
+
+
+	# Parse the response
+	def parseResponse(self):
+		# Hand data to the observation
+		self.observation.parseResponse(self.gameResponse)
 
 
 	# Session Running
@@ -91,13 +97,16 @@ class Session (client.Client):
 		# Send the metadata to choose the game to play
 		self.resetRequest()
 		# Get response and store the metadata we are playing on
-		OK = self.sendGameRequest()
+		self.sendGameRequest()
 		# Now process the loop of actions
 		while (self.live):
 			self.logger.debug("Running the trading game")
+			# If sending was OK, parse the response
 			# Check the response
-			#if (OK = True):
-			#	self.sendGameRequest()
 			#	Internalise Observations
 			#	Internalise state
+			self.parseResponse()
 			#	Decide Actions
+			#TODO: Write this code
+			#	Send the response
+			self.sendGameRequest()

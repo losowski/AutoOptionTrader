@@ -1,5 +1,9 @@
-# Observation base class
-#	Observations are lists of values
+# Observation Trader class
+#	Trader state:
+#	-	gameStockState			-	Stock figures
+#	-	gamePredictionState		-	Prediction
+#	-	gamePlayerState			-	Player balance
+
 import logging
 
 # Observation base class

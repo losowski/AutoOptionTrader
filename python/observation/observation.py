@@ -5,9 +5,9 @@ import logging
 class Observation (object):
 	def __init__(self):
 		self.logger					=   logging.getLogger('Observation')
-		self.observation			=	None
-		self.previousObservation	=	None
-		self.deltaObservation		=	None
+		self.observation			=	list()
+		self.previousObservation	=	list()
+		self.deltaObservation		=	list()
 		self.changed				=	False
 
 
@@ -63,3 +63,9 @@ class Observation (object):
 	def getDeltaObservation(self, observation):
 		#Return the calculated differences
 		return self.deltaObservation
+
+
+	# Generic BaseClass function for parsing a response
+	def parseResponse(self, message):
+		# Implement custom code here
+		pass

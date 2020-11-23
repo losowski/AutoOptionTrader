@@ -10,7 +10,7 @@ from python.actions import actions
 
 # Observation handler
 #TODO: Use the derived class (that interprets this info)
-from python.observation import observation
+from python.observation import trader_observation
 
 
 from python.proto import game_pb2
@@ -28,7 +28,7 @@ class Session (client.Client):
 		# Actions
 		self.actions		=	actions.Actions()
 		# Observations
-		self.observations	=	observation.Observation()
+		self.observations	=	trader_observation.TraderObservation()
 
 	def __del__(self):
 		super(Session, self).__del__()

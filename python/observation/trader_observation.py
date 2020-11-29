@@ -16,7 +16,7 @@ class TraderObservation (observation.Observation):
 	def __init__(self):
 		super(TraderObservation, self).__init__()
 		self.logger					=   logging.getLogger('TraderObservation')
-		selg.gameState				=	game_pb2.gameState()
+		self.gameState				=	game_pb2.gameState()
 
 	def __del__(self):
 		super(TraderObservation, self).__del__()

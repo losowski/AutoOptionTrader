@@ -33,10 +33,10 @@ class Session (client.Client):
 		super(Session, self).initialise()
 		#Create the threads needed
 		self.thread = threading.Thread(target=self.run)
-		# Actions
-		self.actions		=	actions.Actions()
-		# Observations
-		self.observations	=	observation.Observation()
+		## Actions
+		#self.actions		=	actions.Actions()
+		## Observations
+		#self.observations	=	observation.Observation()
 
 
 

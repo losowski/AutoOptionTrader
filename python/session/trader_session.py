@@ -19,8 +19,8 @@ from python.observation import trader_observation
 from python.proto import game_pb2
 
 class TraderSession (session.Session):
-	def __init__(self):
-		super(TraderSession, self).__init__()
+	def __init__(self, tradeAddr, tradePort):
+		super(TraderSession, self).__init__(tradeAddr, tradePort)
 		self.logger					=   logging.getLogger('TraderSession')
 		# Game variables
 		self.gameMeta		=	game_pb2.gameMeta()
@@ -33,9 +33,7 @@ class TraderSession (session.Session):
 
 	# Initialise
 	def initialise(self):
-		super(Session, self).initialise()
-		#Create the threads needed
-		self.thread = threading.Thread(target=self.run)
+		super(TraderSession, self).initialise()
 		# Actions
 		self.actions		=	actions.Actions()
 		# Observations

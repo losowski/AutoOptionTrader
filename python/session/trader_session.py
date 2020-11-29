@@ -81,4 +81,6 @@ class TraderSession (session.Session):
 	#	2) Balance is > 125% of initial value
 	def calculateReward(self):
 		#TODO: Add valuation for trades exited
-		#TODO: Add valuation for balance
+		#TODO: Add valuation for balancie
+		# Set the objectivesDone to whatever we have achieved
+		return super(TraderSession).calculateReward()

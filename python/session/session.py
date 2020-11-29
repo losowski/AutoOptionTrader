@@ -18,6 +18,8 @@ class Session (client.Client):
 		self.logger         =   logging.getLogger('Session')
 		self.thread			=	None
 		self.live			=	True
+		# Objectives
+		self.objectivesDone	=	0
 		# Actions
 		self.actions		=	None
 		# Observations
@@ -94,4 +96,4 @@ class Session (client.Client):
 	# Calculate the reward (based on a state)
 	# Reward conditions * 2^(X-N) for proximity to the reward condition
 	def calculateReward(self):
-		return 1
+		return (2 ^ self.objectivesDone) - 1

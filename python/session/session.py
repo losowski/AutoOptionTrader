@@ -92,6 +92,14 @@ class Session (client.Client):
 			#	Send the response
 			self.sendGameRequest()
 
+	## == REWARDS ==
+	# Set number of objectives achieved
+	def setObjectivesCompleted(self, countObjectivesComplete = 0):
+		self.objectivesDone = countObjectivesComplete
+
+	# Mark objectives complete
+	def markObjectiveComplete(self):
+		self.objectivesDone += 1
 
 	# Calculate the reward (based on a state)
 	# Reward conditions * 2^(X-N) for proximity to the reward condition

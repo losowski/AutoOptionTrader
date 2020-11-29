@@ -89,3 +89,9 @@ class Session (client.Client):
 			#TODO: Write this code
 			#	Send the response
 			self.sendGameRequest()
+
+
+	# Calculate the reward (based on a state)
+	# Reward conditions * 2^(X-N) for proximity to the reward condition
+	def calculateReward(self):
+		return 1

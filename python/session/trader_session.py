@@ -74,3 +74,11 @@ class TraderSession (session.Session):
 		# Hand data to the observation
 		self.observation.parseResponse(self.gameResponse)
 
+
+	# Calculate the reward
+	# Conditions on state
+	#	1) All trades exited
+	#	2) Balance is > 125% of initial value
+	def calculateReward(self):
+		#TODO: Add valuation for trades exited
+		#TODO: Add valuation for balance

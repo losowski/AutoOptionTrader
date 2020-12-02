@@ -1,11 +1,16 @@
 # A session is a client connection to the game server
+#	Game specific code is added in the next level up
 
 import logging
 import threading
 
 from python.comms import client
+# Actions Handler
+from python.actions import actions
 
-from python.proto import game_pb2
+# Observation handler
+from python.observation import observation
+
 
 class Session (client.Client):
 	def __init__(self, tradeAddr, tradePort):
@@ -13,10 +18,12 @@ class Session (client.Client):
 		self.logger         =   logging.getLogger('Session')
 		self.thread			=	None
 		self.live			=	True
-		# Game variables
-		self.gameMeta		=	game_pb2.gameMeta()
-		self.gameResponse	=	None
-		self.gameRequest	=	game_pb2.gameRequest()
+		# Objectives
+		self.objectivesDone	=	0
+		# Actions
+		self.actions		=	None
+		# Observations
+		self.observations	=	None
 
 	def __del__(self):
 		super(Session, self).__del__()
@@ -28,6 +35,11 @@ class Session (client.Client):
 		super(Session, self).initialise()
 		#Create the threads needed
 		self.thread = threading.Thread(target=self.run)
+		## Actions
+		#self.actions		=	actions.Actions()
+		## Observations
+		#self.observations	=	observation.Observation()
+
 
 
 
@@ -46,26 +58,50 @@ class Session (client.Client):
 
 	# Reset Game data except for metadata
 	def resetRequest(self):
-		if (self.gameResponse is not None):
-			if (self.gameResponse.HasField('meta')):
-				# Store the response meta data
-				self.gameMeta.CopyFrom(self.gameResponse.meta)
-		# Reset the main request
-		self.gameRequest	=	game_pb2.gameRequest()
-		# Restore the metaData
-		self.gameRequest.meta.CopyFrom(self.gameMeta)
+		pass
+
+
+	# Send the request to the game Server
+	#	Also process the response into a protocol buffer message
+	def sendGameRequest(self):
+		pass
+
+
+	# Parse the response
+	def parseResponse(self):
+		pass
 
 
 	# Session Running
 	def run(self):
 		self.logger.info("Thread running")
-		# 1) Send the metadata to choose the game to play
-		# 2) Get response and store the metadata we are playing on
+		# Send the metadata to choose the game to play
+		self.resetRequest()
+		# Get response and store the metadata we are playing on
+		self.sendGameRequest()
+		# Now process the loop of actions
 		while (self.live):
-			self.logger.debug("Running the trading game")
+			self.logger.debug("Running the game")
+			# If sending was OK, parse the response
 			# Check the response
-			if (self.gameResponse is not None):
-				if (self.gameResponse.status != game_pb2.gameStatus.OK):
-					self.logger.info("Response Bad")
-					# Kill the session
-					self.live = False
+			#	Internalise Observations
+			#	Internalise state
+			self.parseResponse()
+			#	Decide Actions
+			#TODO: Write this code
+			#	Send the response
+			self.sendGameRequest()
+
+	## == REWARDS ==
+	# Set number of objectives achieved
+	def setObjectivesCompleted(self, countObjectivesComplete = 0):
+		self.objectivesDone = countObjectivesComplete
+
+	# Mark objectives complete
+	def markObjectiveComplete(self):
+		self.objectivesDone += 1
+
+	# Calculate the reward (based on a state)
+	# Reward conditions * 2^(X-N) for proximity to the reward condition
+	def calculateReward(self):
+		return (2 ^ self.objectivesDone) - 1

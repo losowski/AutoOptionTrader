@@ -7,7 +7,7 @@
 
 import logging
 
-from python.session import session
+from python.session import trader_session
 
 class AutoTrader (object):
 
@@ -29,7 +29,7 @@ class AutoTrader (object):
 	# Assign a thread to each
 	def initialise(self):
 		for i in range(self.SESSIONS):
-			s = session.Session(self.tradeAddr, self.tradePort)
+			s = trader_session.TraderSession(self.tradeAddr, self.tradePort)
 			s.initialise()
 			self.sessions.append(s)			
 

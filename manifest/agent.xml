@@ -1,0 +1,88 @@
+<agent>
+	<enums>
+		<enum name="option">
+			<value name="C">Call</value>
+			<value name="P">Put</value>
+		</enum>
+		<struct name="option">
+			<input id="10" type="enum">	
+				<name>option</name>
+				<enum>option</enum>
+			</input>
+			<input id="11" type="int32">
+				<name>strike</name>	
+			</input>
+			<input id="12" type="float">
+				<name>price</input>	
+			</input>
+		</struct>
+	<types>
+	<inputs>
+		<!-- gameStockState: Current view -->
+		<input id="1" type="float">
+			<name>high</name>
+		</input>
+		<input id="2" type="float">
+			<name>low</name>
+		</input>
+		<input id="3" type="float">
+			<name>open</name>
+		</input>
+		<input id="4" type="float">
+			<name>close</name>
+		</input>
+		<input id="5" type="float">
+			<name>adj_close</name>
+		</input>
+		<input id="6" type="float">
+			<name>volume</name>
+		</input>
+		<!-- gamePredictionState: Prediction -->
+		<input id="7" type="int32">
+			<name>prediction</name>
+		</input>
+		<input id="8" type="float">
+			<name>target</name>
+		</input>	
+		<!-- gamePlayerState: Player balance-->
+		<input id="9" type="int32">
+			<name>balance</name>
+		</input>
+		<!-- gameAction: Existing trades (x2)-->
+		<input id="10" type="struct">
+			<name>existing2</name>
+			<struct>option</struct>
+		</input>
+		<input id="11" type="struct">
+			<name>existing1</name>
+			<struct>option</struct>
+		</input>
+		<!-- gameOptions: Available trades (x6)-->
+		<input id="12" type="struct">
+			<name>option1</name>
+			<struct>option</struct>
+		</input>
+		<input id="13" type="struct">
+			<name>option2</name>
+			<struct>option</struct>
+		</input>
+		<input id="14" type="struct">
+			<name>option3</name>
+			<struct>option</struct>
+		</input>
+		<input id="15" type="struct">
+			<name>option4</name>
+			<struct>option</struct>
+		</input>
+		<input id="16" type="struct">
+			<name>option5</name>
+			<struct>option</struct>
+		</input>
+		<input id="17" type="struct">
+			<name>option6</name>
+			<struct>option</struct>
+		</input>
+	</inputs>
+	<outputs>
+	</outputs>
+</agent>

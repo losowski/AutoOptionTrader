@@ -5,20 +5,20 @@
 			<value name="P">Put</value>
 		</enum>
 	</enums>
-	<types>
+	<structs>
 		<struct name="option">
-			<input id="10" type="enum">	
+			<input id="10" type="enum">
 				<name>option</name>
 				<enum>option</enum>
 			</input>
 			<input id="11" type="int32">
-				<name>strike</name>	
+				<name>strike</name>
 			</input>
 			<input id="12" type="float">
-				<name>price</input>	
+				<name>price</name>
 			</input>
 		</struct>
-	</types>
+	</structs>
 	<inputs>
 		<!-- gameStockState: Current view -->
 		<input id="1" type="float">
@@ -45,7 +45,7 @@
 		</input>
 		<input id="8" type="float">
 			<name>target</name>
-		</input>	
+		</input>
 		<!-- gamePlayerState: Player balance-->
 		<input id="9" type="int32">
 			<name>balance</name>

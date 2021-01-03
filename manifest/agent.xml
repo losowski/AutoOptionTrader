@@ -4,6 +4,8 @@
 			<value name="C">Call</value>
 			<value name="P">Put</value>
 		</enum>
+	</enums>
+	<types>
 		<struct name="option">
 			<input id="10" type="enum">	
 				<name>option</name>
@@ -16,7 +18,7 @@
 				<name>price</input>	
 			</input>
 		</struct>
-	<types>
+	</types>
 	<inputs>
 		<!-- gameStockState: Current view -->
 		<input id="1" type="float">

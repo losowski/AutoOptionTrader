@@ -1,0 +1,6 @@
+<environment>
+	<!-- Total number of steps available -->
+	<size>28</size>
+	<!-- Total steps ahead that we can see -->
+	<visible>0</visible>
+<environment>
